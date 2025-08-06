@@ -2,19 +2,75 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>PingGuard Configure</title>
+  <title>Configure PingGuard</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 700px; margin: 50px auto; padding: 20px; }
+    label { display: block; margin-top: 15px; font-weight: bold; }
+    input[type="text"] { width: 100%; padding: 8px; margin-top: 5px; }
+    .input-group { margin-bottom: 10px; }
+    button { margin-top: 15px; padding: 8px 12px; cursor: pointer; }
+  </style>
 </head>
 <body>
   <h1>Configure PingGuard Bot</h1>
-  <form>
-    <label for="protectedUser">Protected User ID:</label><br />
-    <input type="text" id="protectedUser" name="protectedUser" placeholder="Enter user ID to protect" /><br /><br />
+  <form id="configForm">
+    <div>
+      <label>Protected User IDs (users to avoid pinging):</label>
+      <div id="protectedUsersContainer">
+        <input type="text" name="protectedUser" placeholder="Insert User ID" />
+      </div>
+      <button type="button" onclick="addProtectedUser()">+ Add more</button>
+    </div>
 
-    <label for="whitelistedUsers">Whitelisted User IDs (comma-separated):</label><br />
-    <input type="text" id="whitelistedUsers" name="whitelistedUsers" placeholder="Enter user IDs" /><br /><br />
+    <div>
+      <label>Whitelisted User IDs (users exempt from warnings):</label>
+      <div id="whitelistUsersContainer">
+        <input type="text" name="whitelistedUser" placeholder="Insert User ID" />
+      </div>
+      <button type="button" onclick="addWhitelistUser()">+ Add more</button>
+    </div>
 
     <button type="submit">Save Settings</button>
   </form>
-  <p>More features coming soon!</p>
+
+  <script>
+    function addProtectedUser() {
+      const container = document.getElementById('protectedUsersContainer');
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.name = 'protectedUser';
+      input.placeholder = 'Insert User ID';
+      container.appendChild(input);
+    }
+
+    function addWhitelistUser() {
+      const container = document.getElementById('whitelistUsersContainer');
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.name = 'whitelistedUser';
+      input.placeholder = 'Insert User ID';
+      container.appendChild(input);
+    }
+
+    document.getElementById('configForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const protectedUsers = Array.from(document.getElementsByName('protectedUser'))
+        .map(input => input.value.trim())
+        .filter(val => val !== '');
+
+      const whitelistedUsers = Array.from(document.getElementsByName('whitelistedUser'))
+        .map(input => input.value.trim())
+        .filter(val => val !== '');
+
+      // For now, just show an alert — later you can connect this to your bot's backend via API
+      alert(
+        'Protected Users: ' + protectedUsers.join(', ') + '\n' +
+        'Whitelisted Users: ' + whitelistedUsers.join(', ')
+      );
+
+      // TODO: Send data to your backend for saving
+    });
+  </script>
 </body>
 </html>
