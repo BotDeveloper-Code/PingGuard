@@ -2,33 +2,82 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Configure PingGuard</title>
   <style>
-    body { font-family: Arial, sans-serif; max-width: 700px; margin: 50px auto; padding: 20px; }
-    label { display: block; margin-top: 15px; font-weight: bold; }
-    input[type="text"] { width: 100%; padding: 8px; margin-top: 5px; }
-    .input-group { margin-bottom: 10px; }
-    button { margin-top: 15px; padding: 8px 12px; cursor: pointer; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #1f2937;
+      color: #f9fafb;
+      margin: 0;
+      padding: 40px 20px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2.8rem;
+      margin-bottom: 1.5rem;
+    }
+    label {
+      display: block;
+      margin-top: 1.2rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: none;
+      margin-top: 6px;
+      font-size: 1rem;
+    }
+    .input-group {
+      margin-bottom: 10px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 12px 28px;
+      font-size: 1.1rem;
+      background-color: #4f46e5;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.5);
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #4338ca;
+    }
+    .add-more {
+      background-color: #2563eb;
+      margin-top: 6px;
+      font-size: 1rem;
+      padding: 8px 20px;
+      box-shadow: none;
+    }
+    .add-more:hover {
+      background-color: #1e40af;
+    }
   </style>
 </head>
 <body>
   <h1>Configure PingGuard Bot</h1>
   <form id="configForm">
-    <div>
-      <label>Protected User IDs (users to avoid pinging):</label>
-      <div id="protectedUsersContainer">
-        <input type="text" name="protectedUser" placeholder="Insert User ID" />
-      </div>
-      <button type="button" onclick="addProtectedUser()">+ Add more</button>
+    <label>Protected User IDs (users to avoid pinging):</label>
+    <div id="protectedUsersContainer" class="input-group">
+      <input type="text" name="protectedUser" placeholder="Insert User ID" />
     </div>
+    <button type="button" class="add-more" onclick="addProtectedUser()">+ Add more</button>
 
-    <div>
-      <label>Whitelisted User IDs (users exempt from warnings):</label>
-      <div id="whitelistUsersContainer">
-        <input type="text" name="whitelistedUser" placeholder="Insert User ID" />
-      </div>
-      <button type="button" onclick="addWhitelistUser()">+ Add more</button>
+    <label>Whitelisted User IDs (users exempt from warnings):</label>
+    <div id="whitelistUsersContainer" class="input-group">
+      <input type="text" name="whitelistedUser" placeholder="Insert User ID" />
     </div>
+    <button type="button" class="add-more" onclick="addWhitelistUser()">+ Add more</button>
 
     <button type="submit">Save Settings</button>
   </form>
@@ -40,6 +89,7 @@
       input.type = 'text';
       input.name = 'protectedUser';
       input.placeholder = 'Insert User ID';
+      input.style.marginTop = '8px';
       container.appendChild(input);
     }
 
@@ -49,6 +99,7 @@
       input.type = 'text';
       input.name = 'whitelistedUser';
       input.placeholder = 'Insert User ID';
+      input.style.marginTop = '8px';
       container.appendChild(input);
     }
 
@@ -63,13 +114,12 @@
         .map(input => input.value.trim())
         .filter(val => val !== '');
 
-      // For now, just show an alert — later you can connect this to your bot's backend via API
       alert(
         'Protected Users: ' + protectedUsers.join(', ') + '\n' +
         'Whitelisted Users: ' + whitelistedUsers.join(', ')
       );
 
-      // TODO: Send data to your backend for saving
+      // TODO: Replace alert with API call to save data
     });
   </script>
 </body>
