@@ -2,16 +2,88 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PingGuard Dashboard</title>
   <style>
-    body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; }
-    button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+    /* Reset and base */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #1f2937;
+      color: #f9fafb;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header {
+      background: #111827;
+      padding: 20px;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+    main {
+      flex: 1;
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+    }
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      color: #d1d5db;
+    }
+    button {
+      background-color: #4f46e5;
+      border: none;
+      padding: 12px 30px;
+      font-size: 1.1rem;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 4px 10px rgba(79, 70, 229, 0.4);
+    }
+    button:hover {
+      background-color: #4338ca;
+    }
+    footer {
+      background: #111827;
+      text-align: center;
+      padding: 15px;
+      color: #6b7280;
+      font-size: 0.9rem;
+    }
+    a.button-link {
+      text-decoration: none;
+      display: inline-block;
+    }
   </style>
 </head>
 <body>
-  <h1>Welcome to PingGuard Dashboard</h1>
-  <p>This is your customizable Discord anti-ping bot dashboard.</p>
-  <p><strong>About the Bot:</strong> PingGuard protects users from unwanted pings by sending warnings and deleting messages that mention protected users.</p>
-  <button onclick="window.location.href='configure.html'">Configure</button>
+  <header>PingGuard Dashboard</header>
+  <main>
+    <h1>Welcome to PingGuard Dashboard</h1>
+    <p>Your customizable Discord anti-ping bot dashboard.</p>
+    <p><strong>About PingGuard:</strong>  
+    Protect users from unwanted pings by warning users and deleting messages that mention protected members.</p>
+    <a href="configure.html" class="button-link">
+      <button>Configure</button>
+    </a>
+  </main>
+  <footer>
+    &copy; 2025 PingGuard | Made with ❤️
+  </footer>
 </body>
 </html>
